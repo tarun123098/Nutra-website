@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutri Care - Registration and Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .navbar {
+            background-color: #4CAF50;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .company-name {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-buttons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .left-side {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .nutra-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: opacity 0.5s;
+        }
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+        }
+        .form-container {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .diet-plans {
+            width: 50%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .diet-plan {
+            margin-bottom: 20px;
+        }
+        .diet-plan h3 {
+            color: #4CAF50;
+            font-size: 20px;
+        }
+        .diet-plan p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            display: block;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .terms-checkbox input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .terms-checkbox .terms-label {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="company-name">Nutri<span style="color: #f8f8f8;">Care</span></div>
+  <div class="navbar-buttons">
+    <a href="#join">About Us</a>&nbsp;&nbsp;
+    <a href="#services">Diet Plans</a>&nbsp;&nbsp;
+    <a href="#help">Help</a>&nbsp;&nbsp;
+    <a href="#diet">Services</a>&nbsp;&nbsp;
+    <a href="#about">Join Us</a>
+  </div>
+</div>
+
+<div class="content">
+    <div class="left-side">
+        <div id="nutraText" class="nutra-text">NUTRA</div>
+        <div id="loginContainer" class="form-container hidden">
+            <form id="loginForm" onsubmit="return validateLoginForm()">
+                <h2>Login Form</h2>
+                <label for="login_email">Email:</label>
+                <input type="email" id="login_email" name="login_email" required>
+                
+                <label for="login_password">Password:</label>
+                <input type="password" id="login_password" name="login_password" required>
+                
+                <p><a href="#forgot">Forgot Password?</a></p>
+                
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="not_robot" name="not_robot" required>
+                    <label for="not_robot" class="terms-label">I am not a robot</label>
+                </div>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+
+        <div id="registrationContainer" class="form-container hidden">
+            <form id="registrationForm" onsubmit="return validateForm()">
+                <h2>Registration Form</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+                
+                <label for="referral_code">Referral Code:</label>
+                <input type="text" id="referral_code" name="referral_code">
+                
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms" class="terms-label">Terms and conditions</label>
+                </div>
+                
+                <input type="submit" value="Register">
+            </form>
+        </div>
+
+        <div class="buttons-container" id="buttonsContainer">
+            <button onclick="showForm('login')">Login</button>
+            <button onclick="showForm('register')">Register</button>
+        </div>
+    </div>
+
+    <div class="diet-plans">
+        <div class="diet-plan">
+            <h3>Fat Reduction Diet Plan 1</h3>
+            <p>Start your day with a healthy breakfast of oatmeal and fruits. For lunch, have a grilled chicken salad with a variety of vegetables. Dinner can be a portion of salmon with quinoa and steamed broccoli.</p>
+        </div>
+        <div class="diet-plan">
+            <h3>Fat Reduction Diet Plan 2</h3>
+            <p>Breakfast should include a smoothie with spinach, banana, and protein powder. A turkey and avocado wrap can be your lunch. For dinner, try a stir-fry with tofu, bell peppers, and brown rice.</p>
+        </div>
+        <div class="diet-plan">
+            <h3>Fat Reduction Diet Plan 3</h3>
+            <p>Have a Greek yogurt with berries for breakfast. For lunch, enjoy a lentil soup with a side salad. Dinner can be a grilled shrimp with sweet potato and asparagus.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showForm(formType) {
+        var loginContainer = document.getElementById('loginContainer');
+        var registrationContainer = document.getElementById('registrationContainer');
+        var buttonsContainer = document.getElementById('buttonsContainer');
+        var nutraText = document.getElementById('nutraText');
+        if (formType === 'login') {
+            loginContainer.classList.remove('hidden');
+            registrationContainer.classList.add('hidden');
+        } else if (formType === 'register') {
+            registrationContainer.classList.remove('hidden');
+            loginContainer.classList.add('hidden');
+        }
+        buttonsContainer.classList.add('hidden');
+        nutraText.classList.add('hidden');
+    }
+
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirm_password = document.getElementById("confirm_password").value;
+        if (password !== confirm_password) {
+            alert("Passwords do not match");
+            return false;
+        }
+        return true;
+    }
+
+    function validateLoginForm() {
+        var notRobot = document.getElementById("not_robot").checked;
+        if (!notRobot) {
+            alert("Please confirm you are not a robot");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>

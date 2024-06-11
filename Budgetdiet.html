@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Diet Plans</title>
+    <style>
+        .navbar {
+            background-color: #4CAF50;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .company-name {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-buttons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2em auto;
+            padding: 0 20px;
+        }
+        .filter-sort-search {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filter-sort-search button, .filter-sort-search select, .filter-sort-search input {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .filter-sort-search input {
+            padding: 10px;
+            width: 200px;
+        }
+        .filter-sort-search button:hover, .filter-sort-search select:hover {
+            background-color: #45a049;
+        }
+        .diet-plan {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 1em 0;
+            padding: 1em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .diet-plan h3 {
+            color: #4CAF50;
+        }
+        .diet-plan p {
+            margin: 0.5em 0;
+        }
+        .details {
+            display: none;
+        }
+        .select-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function toggleDetails(event) {
+            const details = event.currentTarget.querySelector('.details');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+            } else {
+                details.style.display = 'block';
+            }
+        }
+
+        function sortDiets(criteria) {
+            const dietPlans = Array.from(document.querySelectorAll('.diet-plan'));
+            const container = document.querySelector('.container');
+
+            dietPlans.sort((a, b) => {
+                const aPrice = parseInt(a.dataset.price);
+                const bPrice = parseInt(b.dataset.price);
+                if (criteria === 'price') {
+                    return aPrice - bPrice;
+                } else if (criteria === 'popularity') {
+                    return b.dataset.popularity - a.dataset.popularity;
+                }
+            });
+
+            dietPlans.forEach(plan => container.appendChild(plan));
+        }
+
+        function filterDiets(criteria) {
+            const dietPlans = document.querySelectorAll('.diet-plan');
+            dietPlans.forEach(plan => {
+                if (criteria === 'all' || plan.dataset.type.includes(criteria)) {
+                    plan.style.display = 'block';
+                } else {
+                    plan.style.display = 'none';
+                }
+            });
+        }
+
+        function filterByBudget(budgetRange) {
+            const dietPlans = document.querySelectorAll('.diet-plan');
+            dietPlans.forEach(plan => {
+                const price = parseInt(plan.dataset.price);
+                if (budgetRange === 'all' ||
+                    (budgetRange === 'low' && price < 200) ||
+                    (budgetRange === 'moderate' && price >= 200 && price <= 300) ||
+                    (budgetRange === 'high' && price > 300)) {
+                    plan.style.display = 'block';
+                } else {
+                    plan.style.display = 'none';
+                }
+            });
+        }
+
+        function searchDiets() {
+            const query = document.querySelector('#search-input').value.toLowerCase();
+            const dietPlans = document.querySelectorAll('.diet-plan');
+            dietPlans.forEach(plan => {
+                const title = plan.querySelector('h3').innerText.toLowerCase();
+                if (title.includes(query)) {
+                    plan.style.display = 'block';
+                } else {
+                    plan.style.display = 'none';
+                }
+            });
+        }
+
+        function selectDiet(button) {
+            const dietPlan = button.closest('.diet-plan');
+            const title = dietPlan.querySelector('h3').innerText;
+            alert(`You have selected the "${title}" diet plan.`);
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="company-name">Nutri<span style="color: #f8f8f8;">Care</span></div>
+        <div class="navbar-buttons">
+            <a href="display_profile.php">Dashboard</a>
+            <a href="diets.html">Diet Plans</a>
+            <a href="#help">Help</a>
+            <a href="#about-us">About Us</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="filter-sort-search">
+            <div>
+                <button onclick="sortDiets('price')">Sort by Price</button>
+                <button onclick="sortDiets('popularity')">Sort by Popularity</button>
+            </div>
+            <div>
+                <select id="diet-type-filter" onchange="filterDiets(this.value)">
+                    <option value="all">All Diet Types</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="gluten-free">Gluten-Free</option>
+                    <option value="athlete">Athlete</option>
+                    <option value="diabetic">Diabetic</option>
+                    <option value="senior">Senior</option>
+                    <option value="pregnancy">Pregnancy</option>
+                    <option value="weight_loss">Weight Loss</option>
+                    <option value="student">Student</option>
+                    <option value="hypertension">Hypertension</option>
+                    <option value="it_professional">IT Professional</option>
+                </select>
+            </div>
+            <div>
+                <select id="budget-filter" onchange="filterByBudget(this.value)">
+                    <option value="all">All Budgets</option>
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" id="search-input" placeholder="Search diet plans..." onkeyup="searchDiets()">
+            </div>
+        </div>
+
+        <!-- Diet Plan 1 -->
+        <div class="diet-plan" data-price="270" data-popularity="5" data-type="general" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Office Workers</h3>
+            <div class="details">
+                <p><strong>Health Condition:</strong> General Wellness</p>
+                <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
+                <p><strong>Breakfast:</strong> Oatmeal with fruits and nuts - ₹40</p>
+                <p><strong>Lunch:</strong> Brown rice with mixed vegetable curry - ₹60</p>
+                <p><strong>Dinner:</strong> Chapati with paneer bhurji - ₹70</p>
+                <p><strong>Snacks:</strong> Fruits (apple/banana) - ₹20, Mixed nuts (almonds, walnuts) - ₹30</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
+
+        <!-- Add other diet plans similarly -->
+
+        <!-- Diet Plan 2 -->
+        <div class="diet-plan" data-price="490" data-popularity="4" data-type="athlete" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Athletes</h3>
+            <div class="details">
+                <p><strong>Health Condition:</strong> Muscle Gain</p>
+                <p><strong>Budget:</strong> High (₹3000-₹3500/week)</p>
+                <p><strong>Breakfast:</strong> Scrambled eggs with whole grain toast - ₹70</p>
+                <p><strong>Lunch:</strong> Grilled chicken with quinoa salad - ₹100</p>
+                <p><strong>Dinner:</strong> Salmon with sweet potatoes and broccoli - ₹120</p>
+                <p><strong>Snacks:</strong> Protein shake - ₹50, Greek yogurt with berries - ₹50</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
+
+        <!-- Diet Plan 3 -->
+        <div class="diet-plan" data-price="320" data-popularity="3" data-type="diabetic" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Diabetics</h3>
+            <div class="details">
+                <p><strong>Health Condition:</strong> Diabetes</p>
+                <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
+                <p><strong>Breakfast:</strong> Low-fat yogurt with berries - ₹50</p>
+                <p><strong>Lunch:</strong> Whole grain wrap with lean turkey and veggies - ₹70</p>
+                <p><strong>Dinner:</strong> Baked fish with asparagus and brown rice - ₹100</p>
+                <p><strong>Snacks:</strong> Carrot sticks with hummus - ₹30, Nuts (almonds) - ₹40</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
+
+        <!-- Diet Plan 4 -->
+<div class="diet-plan" data-price="150" data-popularity="2" data-type="student" onclick="toggleDetails(event)">
+    <h3>Diet Plan for Students</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> General Wellness</p>
+        <p><strong>Budget:</strong> Low (₹1000-₹1500/week)</p>
+        <p><strong>Breakfast:</strong> Poha with vegetables - ₹20</p>
+        <p><strong>Lunch:</strong> Rice with dal and a vegetable curry - ₹40</p>
+        <p><strong>Dinner:</strong> Roti with vegetable curry and yogurt - ₹50</p>
+        <p><strong>Snacks:</strong> Banana - ₹10, Peanuts - ₹20</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+<!-- Diet Plan 5 -->
+<div class="diet-plan" data-price="370" data-popularity="5" data-type="weight_loss" onclick="toggleDetails(event)">
+    <h3>Diet Plan for Weight Loss</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> Weight Management</p>
+        <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
+        <p><strong>Breakfast:</strong> Smoothie with spinach, banana, and protein powder - ₹70</p>
+        <p><strong>Lunch:</strong> Grilled chicken salad with vinaigrette - ₹100</p>
+        <p><strong>Dinner:</strong> Stir-fried vegetables with tofu - ₹100</p>
+        <p><strong>Snacks:</strong> Apple slices with peanut butter - ₹30, Carrot sticks - ₹20</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+<!-- Diet Plan 6 -->
+<div class="diet-plan" data-price="290" data-popularity="4" data-type="vegetarian" onclick="toggleDetails(event)">
+    <h3>Vegetarian Diet Plan</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> General Wellness</p>
+        <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
+        <p><strong>Breakfast:</strong> Smoothie bowl with mixed berries and granola - ₹50</p>
+        <p><strong>Lunch:</strong> Quinoa salad with chickpeas and vegetables - ₹70</p>
+        <p><strong>Dinner:</strong> Lentil curry with brown rice - ₹80</p>
+        <p><strong>Snacks:</strong> Nuts (cashews) - ₹40, Fruit (mango) - ₹50</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+<!-- Diet Plan 7 -->
+<div class="diet-plan" data-price="330" data-popularity="3" data-type="pregnancy" onclick="toggleDetails(event)">
+    <h3>Diet Plan for Pregnancy</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> Pregnancy</p>
+        <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
+        <p><strong>Breakfast:</strong> Whole grain toast with avocado and egg - ₹60</p>
+        <p><strong>Lunch:</strong> Quinoa bowl with beans, corn, and salsa - ₹80</p>
+        <p><strong>Dinner:</strong> Grilled chicken with steamed vegetables - ₹100</p>
+        <p><strong>Snacks:</strong> Greek yogurt with honey - ₹50, Mixed nuts - ₹40</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+<!-- Diet Plan 8 -->
+<div class="diet-plan" data-price="180" data-popularity="2" data-type="senior" onclick="toggleDetails(event)">
+    <h3>Diet Plan for Seniors</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> General Wellness</p>
+        <p><strong>Budget:</strong> Low (₹1500-₹2000/week)</p>
+        <p><strong>Breakfast:</strong> Oatmeal with milk and fruits - ₹30</p>
+        <p><strong>Lunch:</strong> Vegetable soup with whole grain bread - ₹50</p>
+        <p><strong>Dinner:</strong> Baked chicken with mashed potatoes and peas - ₹70</p>
+        <p><strong>Snacks:</strong> Fruit salad - ₹20, Nuts - ₹10</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+<!-- Diet Plan 9 -->
+<div class="diet-plan" data-price="310" data-popularity="4" data-type="hypertension" onclick="toggleDetails(event)">
+    <h3>Diet Plan for Hypertension</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> High Blood Pressure</p>
+        <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
+        <p><strong>Breakfast:</strong> Low-fat yogurt with oats and berries - ₹50</p>
+        <p><strong>Lunch:</strong> Grilled fish with brown rice and vegetables - ₹100</p>
+        <p><strong>Dinner:</strong> Whole grain pasta with tomato sauce and lean meat - ₹90</p>
+        <p><strong>Snacks:</strong> Carrot sticks with hummus - ₹20, Almonds - ₹50</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+<!-- Diet Plan 10 -->
+<div class="diet-plan" data-price="450" data-popularity="5" data-type="vegan" onclick="toggleDetails(event)">
+    <h3>Vegan Diet Plan</h3>
+    <div class="details">
+        <p><strong>Health Condition:</strong> General Wellness</p>
+        <p><strong>Budget:</strong> High (₹3000-₹3500/week)</p>
+        <p><strong>Breakfast:</strong> Smoothie with almond milk, spinach, and banana - ₹80</p>
+        <p><strong>Lunch:</strong> Lentil soup with whole grain bread - ₹120</p>
+        <p><strong>Dinner:</strong> Quinoa bowl with roasted vegetables - ₹150</p>
+        <p><strong>Snacks:</strong> Mixed nuts - ₹50, Fruit (pineapple) - ₹50</p>
+        <button class="select-btn" onclick="selectDiet(this)">Select</button>
+    </div>
+</div>
+
+
+    </div>
+</body>
+</html>

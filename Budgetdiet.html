@@ -77,6 +77,17 @@
         }
         .details {
             display: none;
+            position: relative;
+        }
+        .details img {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .select-btn {
             background-color: #4CAF50;
@@ -212,6 +223,7 @@
         <div class="diet-plan" data-price="270" data-popularity="5" data-type="general" onclick="toggleDetails(event)">
             <h3>Diet Plan for Office Workers</h3>
             <div class="details">
+                <img src="path/to/your/image1.jpg" alt="Office Workers Diet">
                 <p><strong>Health Condition:</strong> General Wellness</p>
                 <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
                 <p><strong>Breakfast:</strong> Oatmeal with fruits and nuts - ₹40</p>
@@ -222,134 +234,140 @@
             </div>
         </div>
 
-        <!-- Add other diet plans similarly -->
-
         <!-- Diet Plan 2 -->
         <div class="diet-plan" data-price="490" data-popularity="4" data-type="athlete" onclick="toggleDetails(event)">
             <h3>Diet Plan for Athletes</h3>
             <div class="details">
-                <p><strong>Health Condition:</strong> Muscle Gain</p>
-                <p><strong>Budget:</strong> High (₹3000-₹3500/week)</p>
-                <p><strong>Breakfast:</strong> Scrambled eggs with whole grain toast - ₹70</p>
-                <p><strong>Lunch:</strong> Grilled chicken with quinoa salad - ₹100</p>
-                <p><strong>Dinner:</strong> Salmon with sweet potatoes and broccoli - ₹120</p>
-                <p><strong>Snacks:</strong> Protein shake - ₹50, Greek yogurt with berries - ₹50</p>
+                <img src="path/to/your/image2.jpg" alt="Athlete Diet">
+                <p><strong>Health Condition:</strong> Enhanced Performance</p>
+                <p><strong>Budget:</strong> High (₹4000-₹5000/week)</p>
+                <p><strong>Breakfast:</strong> Protein smoothie with berries - ₹100</p>
+                <p><strong>Lunch:</strong> Grilled chicken with quinoa salad - ₹150</p>
+                <p><strong>Dinner:</strong> Salmon with sweet potatoes - ₹200</p>
+                <p><strong>Snacks:</strong> Greek yogurt with honey - ₹80, Protein bars - ₹60</p>
                 <button class="select-btn" onclick="selectDiet(this)">Select</button>
             </div>
         </div>
 
         <!-- Diet Plan 3 -->
-        <div class="diet-plan" data-price="320" data-popularity="3" data-type="diabetic" onclick="toggleDetails(event)">
-            <h3>Diet Plan for Diabetics</h3>
+        <div class="diet-plan" data-price="320" data-popularity="3" data-type="vegetarian" onclick="toggleDetails(event)">
+            <h3>Vegetarian Diet Plan</h3>
             <div class="details">
-                <p><strong>Health Condition:</strong> Diabetes</p>
-                <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
-                <p><strong>Breakfast:</strong> Low-fat yogurt with berries - ₹50</p>
-                <p><strong>Lunch:</strong> Whole grain wrap with lean turkey and veggies - ₹70</p>
-                <p><strong>Dinner:</strong> Baked fish with asparagus and brown rice - ₹100</p>
-                <p><strong>Snacks:</strong> Carrot sticks with hummus - ₹30, Nuts (almonds) - ₹40</p>
+                <img src="path/to/your/image3.jpg" alt="Vegetarian Diet">
+                <p><strong>Health Condition:</strong> General Wellness</p>
+                <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
+                <p><strong>Breakfast:</strong> Smoothie bowl with nuts and seeds - ₹70</p>
+                <p><strong>Lunch:</strong> Lentil soup with whole grain bread - ₹100</p>
+                <p><strong>Dinner:</strong> Vegetable stir-fry with tofu - ₹120</p>
+                <p><strong>Snacks:</strong> Hummus with veggie sticks - ₹50, Fruit salad - ₹30</p>
                 <button class="select-btn" onclick="selectDiet(this)">Select</button>
             </div>
         </div>
 
         <!-- Diet Plan 4 -->
-<div class="diet-plan" data-price="150" data-popularity="2" data-type="student" onclick="toggleDetails(event)">
-    <h3>Diet Plan for Students</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> General Wellness</p>
-        <p><strong>Budget:</strong> Low (₹1000-₹1500/week)</p>
-        <p><strong>Breakfast:</strong> Poha with vegetables - ₹20</p>
-        <p><strong>Lunch:</strong> Rice with dal and a vegetable curry - ₹40</p>
-        <p><strong>Dinner:</strong> Roti with vegetable curry and yogurt - ₹50</p>
-        <p><strong>Snacks:</strong> Banana - ₹10, Peanuts - ₹20</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
+        <div class="diet-plan" data-price="150" data-popularity="4" data-type="student" onclick="toggleDetails(event)">
+            <h3>Budget Diet Plan for Students</h3>
+            <div class="details">
+                <img src="path/to/your/image4.jpg" alt="Student Diet">
+                <p><strong>Health Condition:</strong> General Wellness</p>
+                <p><strong>Budget:</strong> Low (₹1500-₹2000/week)</p>
+                <p><strong>Breakfast:</strong> Peanut butter toast - ₹20</p>
+                <p><strong>Lunch:</strong> Rice with beans and salsa - ₹40</p>
+                <p><strong>Dinner:</strong> Pasta with tomato sauce - ₹50</p>
+                <p><strong>Snacks:</strong> Popcorn - ₹10, Yogurt - ₹30</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
-<!-- Diet Plan 5 -->
-<div class="diet-plan" data-price="370" data-popularity="5" data-type="weight_loss" onclick="toggleDetails(event)">
-    <h3>Diet Plan for Weight Loss</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> Weight Management</p>
-        <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
-        <p><strong>Breakfast:</strong> Smoothie with spinach, banana, and protein powder - ₹70</p>
-        <p><strong>Lunch:</strong> Grilled chicken salad with vinaigrette - ₹100</p>
-        <p><strong>Dinner:</strong> Stir-fried vegetables with tofu - ₹100</p>
-        <p><strong>Snacks:</strong> Apple slices with peanut butter - ₹30, Carrot sticks - ₹20</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
+        <!-- Diet Plan 5 -->
+        <div class="diet-plan" data-price="350" data-popularity="5" data-type="pregnancy" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Pregnancy</h3>
+            <div class="details">
+                <img src="path/to/your/image5.jpg" alt="Pregnancy Diet">
+                <p><strong>Health Condition:</strong> Prenatal Health</p>
+                <p><strong>Budget:</strong> Moderate (₹3000-₹3500/week)</p>
+                <p><strong>Breakfast:</strong> Avocado toast - ₹60</p>
+                <p><strong>Lunch:</strong> Quinoa salad with chickpeas - ₹120</p>
+                <p><strong>Dinner:</strong> Baked fish with steamed vegetables - ₹150</p>
+                <p><strong>Snacks:</strong> Smoothie with spinach and berries - ₹50, Nuts - ₹30</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
-<!-- Diet Plan 6 -->
-<div class="diet-plan" data-price="290" data-popularity="4" data-type="vegetarian" onclick="toggleDetails(event)">
-    <h3>Vegetarian Diet Plan</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> General Wellness</p>
-        <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
-        <p><strong>Breakfast:</strong> Smoothie bowl with mixed berries and granola - ₹50</p>
-        <p><strong>Lunch:</strong> Quinoa salad with chickpeas and vegetables - ₹70</p>
-        <p><strong>Dinner:</strong> Lentil curry with brown rice - ₹80</p>
-        <p><strong>Snacks:</strong> Nuts (cashews) - ₹40, Fruit (mango) - ₹50</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
+        <!-- Diet Plan 6 -->
+        <div class="diet-plan" data-price="250" data-popularity="3" data-type="diabetic" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Diabetics</h3>
+            <div class="details">
+                <img src="path/to/your/image6.jpg" alt="Diabetic Diet">
+                <p><strong>Health Condition:</strong> Diabetes Management</p>
+                <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
+                <p><strong>Breakfast:</strong> Scrambled eggs with spinach - ₹50</p>
+                <p><strong>Lunch:</strong> Grilled chicken salad - ₹100</p>
+                <p><strong>Dinner:</strong> Stir-fried vegetables with tofu - ₹120</p>
+                <p><strong>Snacks:</strong> Apple slices with peanut butter - ₹30, Carrot sticks - ₹20</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
-<!-- Diet Plan 7 -->
-<div class="diet-plan" data-price="330" data-popularity="3" data-type="pregnancy" onclick="toggleDetails(event)">
-    <h3>Diet Plan for Pregnancy</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> Pregnancy</p>
-        <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
-        <p><strong>Breakfast:</strong> Whole grain toast with avocado and egg - ₹60</p>
-        <p><strong>Lunch:</strong> Quinoa bowl with beans, corn, and salsa - ₹80</p>
-        <p><strong>Dinner:</strong> Grilled chicken with steamed vegetables - ₹100</p>
-        <p><strong>Snacks:</strong> Greek yogurt with honey - ₹50, Mixed nuts - ₹40</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
+        <!-- Diet Plan 7 -->
+        <div class="diet-plan" data-price="300" data-popularity="4" data-type="senior" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Seniors</h3>
+            <div class="details">
+                <img src="path/to/your/image7.jpg" alt="Senior Diet">
+                <p><strong>Health Condition:</strong> Senior Wellness</p>
+                <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
+                <p><strong>Breakfast:</strong> Whole grain cereal with milk - ₹40</p>
+                <p><strong>Lunch:</strong> Chicken soup with vegetables - ₹80</p>
+                <p><strong>Dinner:</strong> Baked potato with cottage cheese - ₹100</p>
+                <p><strong>Snacks:</strong> Banana - ₹20, Crackers with cheese - ₹30</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
-<!-- Diet Plan 8 -->
-<div class="diet-plan" data-price="180" data-popularity="2" data-type="senior" onclick="toggleDetails(event)">
-    <h3>Diet Plan for Seniors</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> General Wellness</p>
-        <p><strong>Budget:</strong> Low (₹1500-₹2000/week)</p>
-        <p><strong>Breakfast:</strong> Oatmeal with milk and fruits - ₹30</p>
-        <p><strong>Lunch:</strong> Vegetable soup with whole grain bread - ₹50</p>
-        <p><strong>Dinner:</strong> Baked chicken with mashed potatoes and peas - ₹70</p>
-        <p><strong>Snacks:</strong> Fruit salad - ₹20, Nuts - ₹10</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
+        <!-- Diet Plan 8 -->
+        <div class="diet-plan" data-price="220" data-popularity="5" data-type="weight_loss" onclick="toggleDetails(event)">
+            <h3>Weight Loss Diet Plan</h3>
+            <div class="details">
+                <img src="path/to/your/image8.jpg" alt="Weight Loss Diet">
+                <p><strong>Health Condition:</strong> Weight Management</p>
+                <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
+                <p><strong>Breakfast:</strong> Green smoothie - ₹50</p>
+                <p><strong>Lunch:</strong> Grilled vegetable wrap - ₹80</p>
+                <p><strong>Dinner:</strong> Grilled fish with salad - ₹90</p>
+                <p><strong>Snacks:</strong> Almonds - ₹20, Fresh fruit - ₹30</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
-<!-- Diet Plan 9 -->
-<div class="diet-plan" data-price="310" data-popularity="4" data-type="hypertension" onclick="toggleDetails(event)">
-    <h3>Diet Plan for Hypertension</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> High Blood Pressure</p>
-        <p><strong>Budget:</strong> Moderate (₹2000-₹2500/week)</p>
-        <p><strong>Breakfast:</strong> Low-fat yogurt with oats and berries - ₹50</p>
-        <p><strong>Lunch:</strong> Grilled fish with brown rice and vegetables - ₹100</p>
-        <p><strong>Dinner:</strong> Whole grain pasta with tomato sauce and lean meat - ₹90</p>
-        <p><strong>Snacks:</strong> Carrot sticks with hummus - ₹20, Almonds - ₹50</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
+        <!-- Diet Plan 9 -->
+        <div class="diet-plan" data-price="260" data-popularity="4" data-type="hypertension" onclick="toggleDetails(event)">
+            <h3>Diet Plan for Hypertension</h3>
+            <div class="details">
+                <img src="path/to/your/image9.jpg" alt="Hypertension Diet">
+                <p><strong>Health Condition:</strong> Blood Pressure Management</p>
+                <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
+                <p><strong>Breakfast:</strong> Whole grain toast with avocado - ₹60</p>
+                <p><strong>Lunch:</strong> Spinach and feta salad - ₹100</p>
+                <p><strong>Dinner:</strong> Baked salmon with quinoa - ₹150</p>
+                <p><strong>Snacks:</strong> Yogurt with berries - ₹40, Celery sticks - ₹20</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
-<!-- Diet Plan 10 -->
-<div class="diet-plan" data-price="450" data-popularity="5" data-type="vegan" onclick="toggleDetails(event)">
-    <h3>Vegan Diet Plan</h3>
-    <div class="details">
-        <p><strong>Health Condition:</strong> General Wellness</p>
-        <p><strong>Budget:</strong> High (₹3000-₹3500/week)</p>
-        <p><strong>Breakfast:</strong> Smoothie with almond milk, spinach, and banana - ₹80</p>
-        <p><strong>Lunch:</strong> Lentil soup with whole grain bread - ₹120</p>
-        <p><strong>Dinner:</strong> Quinoa bowl with roasted vegetables - ₹150</p>
-        <p><strong>Snacks:</strong> Mixed nuts - ₹50, Fruit (pineapple) - ₹50</p>
-        <button class="select-btn" onclick="selectDiet(this)">Select</button>
-    </div>
-</div>
-
+        <!-- Diet Plan 10 -->
+        <div class="diet-plan" data-price="300" data-popularity="5" data-type="it_professional" onclick="toggleDetails(event)">
+            <h3>Diet Plan for IT Professionals</h3>
+            <div class="details">
+                <img src="path/to/your/image10.jpg" alt="IT Professional Diet">
+                <p><strong>Health Condition:</strong> General Wellness</p>
+                <p><strong>Budget:</strong> Moderate (₹2500-₹3000/week)</p>
+                <p><strong>Breakfast:</strong> Smoothie with protein powder - ₹80</p>
+                <p><strong>Lunch:</strong> Chicken wrap with veggies - ₹120</p>
+                <p><strong>Dinner:</strong> Pasta with chicken and vegetables - ₹150</p>
+                <p><strong>Snacks:</strong> Mixed nuts - ₹40, Apple - ₹30</p>
+                <button class="select-btn" onclick="selectDiet(this)">Select</button>
+            </div>
+        </div>
 
     </div>
 </body>

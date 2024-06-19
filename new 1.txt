@@ -1,0 +1,22 @@
+CREATE TABLE user_profile (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    first_name VARCHAR(50),
+    middle_name VARCHAR(50),
+    surname VARCHAR(50),
+    dob DATE,
+    age INT,
+    gender ENUM('male', 'female', 'other'),
+    marital_status ENUM('single', 'married'),
+    height FLOAT,
+    weight FLOAT,
+    bmi FLOAT,
+    skin_color VARCHAR(20),
+    habits VARCHAR(100),
+    occupation VARCHAR(100),
+    diseases VARCHAR(100),
+    medications VARCHAR(100),
+    goal VARCHAR(50),
+    food_allergies VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

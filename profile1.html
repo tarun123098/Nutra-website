@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutri Care - Profile</title>
+    <style>
+        body {
+		background: url('b.jpg');
+		background-size: 100% auto; /* Adjusts the size of the background image */
+            background-position: center; /* Positions the background image */
+			background-repeat:no repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .navbar {
+            background-color: #4CAF50;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .company-name {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-buttons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .profile-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-container h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .profile-form label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            display: block;
+        }
+        .profile-form input[type="text"],
+        .profile-form input[type="date"],
+        .profile-form input[type="number"],
+        .profile-form input[type="file"],
+        .profile-form select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .profile-form input[type="radio"] {
+            margin-right: 10px;
+        }
+        .profile-form .checkbox-group {
+            display: block;
+            flex-wrap: wrap;
+        }
+        .profile-form .checkbox-group label {
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+        .profile-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            const dobDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - dobDate.getFullYear();
+            const m = today.getMonth() - dobDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+                age--;
+            }
+            document.getElementById('age').value = age;
+        }
+
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            if (height && weight) {
+                const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+                document.getElementById('bmi').value = bmi;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="company-name">Nutri<span style="color: #f8f8f8;">Care</span></div>
+    <div class="navbar-buttons">
+        <a href="#join">About Us</a>
+        <a href="#services">Diet Plans</a>
+        <a href="#help">Help</a>
+        <a href="#diet">Services</a>
+        <a href="#about">Join Us</a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <h1>PROFILE</h1>
+	<h3><u>Fill the details to get the best diet suggestions which suits you</u></h3> 
+    <form class="profile-form" action="user_profile.php" method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" id="middle_name" name="middle_name">
+        
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+        
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required onchange="calculateAge()">
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required readonly>
+        
+        <label for="gender">Gender:</label>
+        <label><input type="radio" id="male" name="gender" value="male" required> Male</label>
+        <label><input type="radio" id="female" name="gender" value="female"> Female</label>
+        <label><input type="radio" id="other" name="gender" value="other"> Other</label>
+        
+        <label for="marital_status">Marital Status:</label>
+        <select id="marital_status" name="marital_status">
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+        </select>
+        
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height" required onchange="calculateBMI()">
+        
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" required onchange="calculateBMI()">
+        
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi" readonly>
+        
+        <label for="skinColor">Skin Color:</label>
+        <input list="skinColorList" id="skinColor" name="skinColor">
+        <datalist id="skinColorList">
+            <option value="Pale">
+            <option value="Fair">
+            <option value="Light">
+            <option value="Medium">
+            <option value="Olive">
+            <option value="Tan">
+            <option value="Brown">
+            <option value="Dark Brown">
+            <option value="Black">
+        </datalist>
+        
+        <label for="habits">Habits:</label>
+        <input type="hidden" name="habits[]" value="">
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="habits[]" value="smoking"> Smoking</label>
+            <label><input type="checkbox" name="habits[]" value="drinking"> Drinking</label>
+            <label><input type="checkbox" name="habits[]" value="exercise"> Exercise</label>
+            <label><input type="checkbox" name="habits[]" value="sleeping"> Sleeping 8 hours a day</label>
+        </div>
+        
+        <label for="occupation">Occupation:</label>
+        <input type="text" id="occupation" name="occupation">
+        
+        <label for="diseases">Diseases/Disabilities:</label>
+        <input list="diseaseList" id="diseases" name="diseases">
+        <datalist id="diseaseList">
+            <option value="Asthma">
+            <option value="Diabetes">
+            <option value="Hypertension (High Blood Pressure)">
+            <option value="Arthritis">
+            <option value="Cancer">
+            <option value="Heart Disease">
+            <option value="Stroke">
+            <option value="Chronic Obstructive Pulmonary Disease (COPD)">
+            <option value="Depression">
+            <option value="Anxiety">
+            <option value="Osteoporosis">
+            <option value="Chronic Kidney Disease">
+            <option value="Alzheimer's Disease">
+            <option value="Parkinson's Disease">
+            <option value="Epilepsy">
+            <option value="Multiple Sclerosis">
+            <option value="Migraine">
+        </datalist>
+       
+        <label for="medications">Past/Present Medications:</label>
+        <input type="text" id="medications" name="medications">
+        
+		<label for="goal">Goal:</label>
+		<input list="goalList" id="goal" name="goal">
+			<datalist id="goalList">
+				<option value="Weight Loss">
+				<option value="Muscle Gain">
+				<option value="Improve Energy Levels">
+				<option value="Improve Digestion">
+				<option value="Manage Diabetes">
+				<option value="Lower Cholesterol">
+				<option value="Improve Heart Health">
+				<option value="Increase Stamina">
+				<option value="Better Skin Health">
+				<option value="Boost Immunity">
+				<option value="Reduce Inflammation">
+				<option value="Detoxification">
+			</datalist>
+	
+        
+        <label for="food_allergies">Food Allergies:</label>
+<input list="allergyList" id="food_allergies" name="food_allergies">
+<datalist id="allergyList">
+    <option value="Peanuts">
+    <option value="Milk">
+    <option value="Eggs">
+    <option value="Wheat">
+    <option value="Soy">
+    <option value="Fish">
+    <option value="Shellfish">
+    <option value="Gluten">
+    <option value="Sesame">
+    <option value="Mustard">
+    <option value="Celery">
+    <option value="Lupin">
+    <option value="Sulphites">
+    <option value="Corn">
+    <option value="Gelatin">
+    <option value="Latex">
+    <option value="Garlic">
+    <option value="Tomatoes">
+    <option value="Soybeans">
+    <option value="Lentils">
+    <option value="Chickpeas">
+    <option value="Green Beans">
+    <option value="Kidney Beans">
+    <option value="Lima Beans">
+    <option value="Navy Beans">
+    <option value="Pinto Beans">
+    <option value="Split Peas">
+    <option value="Brussels Sprouts">
+    <option value="Broccoli">
+    <option value="Cabbage">
+    <option value="Cauliflower">
+    <option value="Kale">
+    <option value="Spinach">
+
+</datalist>
+
+     <input type="submit" value="Save Profile">
+    </form>
+</div>
+
+</body>
+</html>
